@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Flex } from '@rebass/grid';
 import Paragraph from 'shared-components/Typography/Paragraph';
 import Header from 'shared-components/Typography/Header';
+import SortButton from 'shared-components/SortButton';
 import { StyledBox, StyledCategoryShows, TextWrapper } from './styled';
 import ShowCart from './ShowCart';
 
 function CategoryShows({ shows, description }) {
+  const [sortType, setSortType] = useState('ASC');
   return (
     <StyledCategoryShows>
       <Flex justifyContent="space-between" alignItems="center" flexWrap="wrap">
@@ -22,11 +24,28 @@ function CategoryShows({ shows, description }) {
         <>
           <Flex pl={2} justifyContent="space-between">
             <Header text={`${shows.length} Podcasts`} variant="xl" />
+            <SortButton
+              side="left"
+              options={[
+                { key: 'ASC', value: 'SORT A-Z' },
+                { key: 'DESC', value: 'SORT Z-A' },
+              ]}
+              onOptionClick={(option) => {
+                setSortType(option);
+              }}
+            />
           </Flex>
           <Flex flexWrap="wrap" flexDirection="row">
-            {shows.map((show) => (
-              <ShowCart key={show.id} show={show} />
-            ))}
+            {shows
+              .sort((show1, show2) => {
+                if (show1.name > show2.name) {
+                  return sortType === 'ASC' ? 1 : -1;
+                }
+                return sortType === 'ASC' ? -1 : 1;
+              })
+              .map((show) => (
+                <ShowCart key={show.id} show={show} />
+              ))}
           </Flex>
         </>
       )}
