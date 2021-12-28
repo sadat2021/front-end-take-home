@@ -1,9 +1,10 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Flex } from '@rebass/grid';
 import Paragraph from 'shared-components/Typography/Paragraph';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { StyledBox, StyledCategoryShows, TextWrapper } from './styled';
 import Header from 'shared-components/Typography/Header';
+import { StyledBox, StyledCategoryShows, TextWrapper } from './styled';
+import ShowCart from './ShowCart';
 
 function CategoryShows({ shows, description }) {
   return (
@@ -21,6 +22,11 @@ function CategoryShows({ shows, description }) {
         <>
           <Flex pl={2} justifyContent="space-between">
             <Header text={`${shows.length} Podcasts`} variant="xl" />
+          </Flex>
+          <Flex flexWrap="wrap" flexDirection="row">
+            {shows.map((show) => (
+              <ShowCart key={show.id} show={show} />
+            ))}
           </Flex>
         </>
       )}
