@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Flex } from '@rebass/grid';
 import Paragraph from 'shared-components/Typography/Paragraph';
 import Header from 'shared-components/Typography/Header';
@@ -9,9 +10,15 @@ import ShowCart from './ShowCart';
 
 function CategoryShows({ shows, description }) {
   const [sortType, setSortType] = useState('ASC');
-  return (
+  const browser = useSelector((state) => state.device.browser);
+  return browser === 'Chrome' ? (
     <StyledCategoryShows>
-      <Flex justifyContent="space-between" alignItems="center" flexWrap="wrap">
+      <Flex
+        justifyContent="space-between"
+        alignItems="center"
+        flexWrap="wrap"
+        mt={4}
+      >
         <StyledBox>
           {description && (
             <TextWrapper>
@@ -49,6 +56,12 @@ function CategoryShows({ shows, description }) {
           </Flex>
         </>
       )}
+    </StyledCategoryShows>
+  ) : (
+    <StyledCategoryShows>
+      <Header variant="l" transparent>
+        The page only work on the *latest Chrome version*
+      </Header>
     </StyledCategoryShows>
   );
 }
