@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryShows test Display the correct number of podcasts 1`] = `
+<div>
+  <div
+    class="src__Box-sc-1sbtrzs-0 sc-ieecCq kwrofL hSCNtY"
+  >
+    <h1
+      class="sc-eCImPb sc-iCfMLu iLWCMF ealbgl"
+    >
+      The page only work on the *latest Chrome version*
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`CategoryShows test The Category shows page only work on the *latest Chrome version* 1`] = `
+<div>
+  <div
+    class="src__Box-sc-1sbtrzs-0 sc-ieecCq kwrofL hSCNtY"
+  >
+    <h1
+      class="sc-eCImPb sc-iCfMLu iLWCMF ealbgl"
+    >
+      The page only work on the *latest Chrome version*
+    </h1>
+  </div>
+</div>
+`;
